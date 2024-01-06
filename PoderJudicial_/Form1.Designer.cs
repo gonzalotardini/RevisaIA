@@ -44,7 +44,7 @@
             this.materialButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(58, 81);
+            this.materialButton1.Location = new System.Drawing.Point(81, 80);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -65,7 +65,7 @@
             this.ruta.Depth = 0;
             this.ruta.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.ruta.LeadingIcon = null;
-            this.ruta.Location = new System.Drawing.Point(184, 81);
+            this.ruta.Location = new System.Drawing.Point(207, 80);
             this.ruta.MaxLength = 50;
             this.ruta.MouseState = MaterialSkin.MouseState.OUT;
             this.ruta.Multiline = false;
@@ -83,7 +83,7 @@
             this.materialButton2.Depth = 0;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(245, 155);
+            this.materialButton2.Location = new System.Drawing.Point(268, 154);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton2.Name = "materialButton2";
