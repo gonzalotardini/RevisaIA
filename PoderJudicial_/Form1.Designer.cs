@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.seleccionarButton = new MaterialSkin.Controls.MaterialButton();
             this.ruta = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.consultarButton = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
-            // materialButton1
+            // seleccionarButton
             // 
-            this.materialButton1.AutoSize = false;
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(81, 80);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(105, 38);
-            this.materialButton1.TabIndex = 0;
-            this.materialButton1.Text = "Seleccionar Archivo";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            this.seleccionarButton.AutoSize = false;
+            this.seleccionarButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.seleccionarButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.seleccionarButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.seleccionarButton.Depth = 0;
+            this.seleccionarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.seleccionarButton.HighEmphasis = true;
+            this.seleccionarButton.Icon = null;
+            this.seleccionarButton.Location = new System.Drawing.Point(81, 80);
+            this.seleccionarButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.seleccionarButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.seleccionarButton.Name = "seleccionarButton";
+            this.seleccionarButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.seleccionarButton.Size = new System.Drawing.Size(105, 38);
+            this.seleccionarButton.TabIndex = 0;
+            this.seleccionarButton.Text = "Seleccionar Archivo";
+            this.seleccionarButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.seleccionarButton.UseAccentColor = false;
+            this.seleccionarButton.UseVisualStyleBackColor = true;
+            this.seleccionarButton.Click += new System.EventHandler(this.materialButton1_Click);
             // 
             // ruta
             // 
@@ -75,35 +75,35 @@
             this.ruta.Text = "";
             this.ruta.TrailingIcon = null;
             // 
-            // materialButton2
+            // consultarButton
             // 
-            this.materialButton2.AutoSize = false;
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(268, 154);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton2.Size = new System.Drawing.Size(200, 50);
-            this.materialButton2.TabIndex = 4;
-            this.materialButton2.Text = "CONSULTAR";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            this.consultarButton.AutoSize = false;
+            this.consultarButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.consultarButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.consultarButton.Depth = 0;
+            this.consultarButton.HighEmphasis = true;
+            this.consultarButton.Icon = null;
+            this.consultarButton.Location = new System.Drawing.Point(268, 154);
+            this.consultarButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.consultarButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.consultarButton.Name = "consultarButton";
+            this.consultarButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.consultarButton.Size = new System.Drawing.Size(200, 50);
+            this.consultarButton.TabIndex = 4;
+            this.consultarButton.Text = "CONSULTAR";
+            this.consultarButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.consultarButton.UseAccentColor = false;
+            this.consultarButton.UseVisualStyleBackColor = true;
+            this.consultarButton.Click += new System.EventHandler(this.materialButton2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 450);
-            this.Controls.Add(this.materialButton2);
+            this.Controls.Add(this.consultarButton);
             this.Controls.Add(this.ruta);
-            this.Controls.Add(this.materialButton1);
+            this.Controls.Add(this.seleccionarButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -117,8 +117,8 @@
 
         #endregion
         private MaterialSkin.Controls.MaterialTextBox ruta;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        public MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton consultarButton;
+        public MaterialSkin.Controls.MaterialButton seleccionarButton;
     }
 }
 

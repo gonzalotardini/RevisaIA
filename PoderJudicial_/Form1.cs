@@ -1,15 +1,13 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
-using System.Threading;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OfficeOpenXml;
 using Newtonsoft.Json.Linq;
-using System.Linq;
-using System.Windows.Forms.VisualStyles;
+using System.ComponentModel.DataAnnotations;
 
 namespace PoderJudicial_
 {
@@ -31,7 +29,7 @@ namespace PoderJudicial_
         {
             // Configurar el diálogo para seleccionar archivos
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx|Todos los archivos (*.*)|*.*";
+            openFileDialog.Filter = "Archivos de Excel|*.xlsx;*.xls;*.xlsm";
             openFileDialog.Title = "Seleccionar archivo";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -49,11 +47,13 @@ namespace PoderJudicial_
             {
                 string _ruta = null;
 
-                // Acceder al control 'ruta' en el hilo principal
+                // Acceder al control 'ruta' en el hilo principal por error q mostraba
                 Invoke((MethodInvoker)delegate
                 {
                     _ruta = ruta.Text;
                 });
+
+                validarRuta(_ruta);
 
                 FileInfo fileInfo = new FileInfo(_ruta);
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -62,11 +62,10 @@ namespace PoderJudicial_
                     foreach (var hoja in package.Workbook.Worksheets)
                     {
                         //validarEstructuraDocumento(hoja);
-                        // Obtener el número de filas en la hoja de trabajo
+                        // Obtiene cantidad de filas
                         int cantidadFilas = hoja.Dimension.Rows;
 
-                        // Iterar a través de las filas y modificar los valores en la columna F
-                        for (int fila = 2; fila <= cantidadFilas; fila++) // Comenzamos desde la segunda fila asumiendo que la primera fila son encabezados
+                        for (int fila = 2; fila <= cantidadFilas; fila++) //Comienza desde la segunda fila
                         {
                             string expediente = hoja.Cells[fila, 3].Text;
                             string actuacion = hoja.Cells[fila, 4].Text;
@@ -76,27 +75,34 @@ namespace PoderJudicial_
 
                             bool estaFirmado = await getEstaFirmado(apiParam);
 
-                            // Modificar el valor en la columna F
-                            hoja.Cells[fila, 6].Value = estaFirmado ? "SI" : "NO"; // Columna F
+                            //Marca como firmado
+                            hoja.Cells[fila, 6].Value = estaFirmado ? "SI" : "NO";
                         }
                     }
 
-                    // Guardar los cambios en el archivo Excel
-                    await package.SaveAsync();
-                    MessageBox.Show("Se proceso el archivo correctamente", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        // Guardar los cambios en el archivo Excel
+                        await package.SaveAsync(); //await para q espere a q finalice para mostrar el msje
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        throw new Exception("Error al guardar el archivo, verificar que no esta abierto.");
+                    }
+
+                    
+                    MessageBox.Show("Se proceso el archivo correctamente.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+            catch (ValidationException vex)
+            {
+                MessageBox.Show(vex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-
-        private void validarParametros(string hoja, int fila,string expediente, string actuacion)
-        {
-            if (expediente.Length <= 5) throw new Exception("'Número de exp' contiene un valor incorrecto en la hoja:  " + hoja + "', fila:  " + fila + "'");
-            if (actuacion.Length <= 5) throw new Exception("'Número de actuación' contiene un valor incorrecto en la hoja: '" + hoja + "', fila: '" + fila + "'");
         }
 
         static async Task<bool> getEstaFirmado(String search)
@@ -117,20 +123,15 @@ namespace PoderJudicial_
                     // Realiza la solicitud GET con los parámetros en la URL
                     HttpResponseMessage response = await client.GetAsync(urlConParametros);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseData = await response.Content.ReadAsStringAsync();
-                        JObject json = JObject.Parse(responseData);
-                        return ((JArray)json["content"]).Count > 0 ? true : false;
-                    }
-                    else
-                    {
-                        throw new Exception("La web eje.juscaba.gob.ar no se encuentra disponible");
-                    }
+                    if (!response.IsSuccessStatusCode) throw new Exception("La web eje.juscaba.gob.ar no se encuentra disponible.");
+
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    JObject json = JObject.Parse(responseData);
+                    return ((JArray)json["content"]).Count > 0 ? true : false;
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Se produjo un error al querer consultar eje.juscaba.gob.ar");
+                    throw new Exception("Se produjo un error al querer consultar eje.juscaba.gob.ar.");
                 }
             }
         }
@@ -140,6 +141,18 @@ namespace PoderJudicial_
 
         }
 
+        private void validarRuta(string ruta)
+        {
+            if (string.IsNullOrEmpty(ruta)) throw new ValidationException("Debes seleccionar un archivo.");
+        }
+
+        private void validarParametros(string hoja, int fila, string expediente, string actuacion)
+        {
+            if (expediente.Length <= 5) throw new Exception("'Número de exp' contiene un valor incorrecto en la hoja:  " + hoja + "', fila:  " + fila + "'.");
+            if (actuacion.Length <= 5) throw new Exception("'Número de actuación' contiene un valor incorrecto en la hoja: '" + hoja + "', fila: '" + fila + "'.");
+        }
+
+        //todo agregar esta validación para corroborar q la cantidad de columnas del doc es correcta
         private void validarEstructuraDocumento(ExcelWorksheet hoja)
         {
             if (hoja.Dimension.Columns != 9) throw new Exception("El documento posee una cantidad de columnas incorrectas en la hoja: " + hoja.Name + ". La aplicación espera 9 columnas.");
