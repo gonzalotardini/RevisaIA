@@ -32,6 +32,7 @@
             this.seleccionarButton = new MaterialSkin.Controls.MaterialButton();
             this.ruta = new MaterialSkin.Controls.MaterialTextBox();
             this.consultarButton = new MaterialSkin.Controls.MaterialButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // seleccionarButton
@@ -96,11 +97,22 @@
             this.consultarButton.UseVisualStyleBackColor = true;
             this.consultarButton.Click += new System.EventHandler(this.materialButton2_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(302, 433);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(393, 14);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "© Copyright: Rodrigo Agustín Tardini. Permisos de uso: rodrigotardini@gmail.com";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.consultarButton);
             this.Controls.Add(this.ruta);
             this.Controls.Add(this.seleccionarButton);
@@ -112,6 +124,7 @@
             this.Text = "Poder Judicial";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -119,6 +132,7 @@
         private MaterialSkin.Controls.MaterialTextBox ruta;
         private MaterialSkin.Controls.MaterialButton consultarButton;
         public MaterialSkin.Controls.MaterialButton seleccionarButton;
+        private System.Windows.Forms.Label label1;
     }
 }
 

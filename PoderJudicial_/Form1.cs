@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using OfficeOpenXml;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using OfficeOpenXml.Style;
+using System.Drawing;
 
 namespace PoderJudicial_
 {
@@ -75,8 +77,18 @@ namespace PoderJudicial_
 
                             bool estaFirmado = await getEstaFirmado(apiParam);
 
+                            ExcelRangeBase celdaFirmado = hoja.Cells[fila, 6];
+
                             //Marca como firmado
-                            hoja.Cells[fila, 6].Value = estaFirmado ? "SI" : "NO";
+                            if (estaFirmado)
+                            {
+                                celdaFirmado.Value = "SI";
+                                celdaFirmado.Style.Fill.PatternType = ExcelFillStyle.Solid; ;
+                                celdaFirmado.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Green);
+                            }
+                            else {
+                                celdaFirmado.Value = "NO";
+                            }
                         }
                     }
 
@@ -90,7 +102,6 @@ namespace PoderJudicial_
                         throw new Exception("Error al guardar el archivo, verificar que no esta abierto.");
                     }
 
-                    
                     MessageBox.Show("Se proceso el archivo correctamente.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -138,7 +149,7 @@ namespace PoderJudicial_
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            label1.Font = new Font("Arial", 8, FontStyle.Regular);
         }
 
         private void validarRuta(string ruta)
