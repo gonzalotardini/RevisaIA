@@ -123,7 +123,7 @@ namespace PoderJudicial_
                 try
                 {
                     // Construye los parámetros en formato JSON
-                    string filtro = $"{{\"filter\":\"{{\\\"identificador\\\":\\\"{search}\\\"}}\",\"page\":0,\"size\":50}}";
+                    string filtro = $"{{\"filter\":\"{{\\\"identificador\\\":\\\"{search}\\\"}}\",\"page\":0,\"size\":1}}";
 
                     // Codifica la cadena JSON
                     string filtroCodificado = Uri.EscapeDataString(filtro);
@@ -132,11 +132,11 @@ namespace PoderJudicial_
                     string urlConParametros = $"{apiUrl}?filtros={filtroCodificado}";
 
                     // Realiza la solicitud GET con los parámetros en la URL
-                    HttpResponseMessage response = await client.GetAsync(urlConParametros);
+                    HttpResponseMessage response = client.GetAsync(urlConParametros).Result;
 
                     if (!response.IsSuccessStatusCode) throw new Exception("La web eje.juscaba.gob.ar no se encuentra disponible.");
 
-                    string responseData = await response.Content.ReadAsStringAsync();
+                    string responseData = response.Content.ReadAsStringAsync().Result;
                     JObject json = JObject.Parse(responseData);
                     return ((JArray)json["content"]).Count > 0 ? true : false;
                 }
