@@ -33,6 +33,8 @@
             this.ruta = new MaterialSkin.Controls.MaterialTextBox();
             this.consultarButton = new MaterialSkin.Controls.MaterialButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // seleccionarButton
@@ -107,11 +109,21 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "© Copyright: Rodrigo Agustín Tardini. Permisos de uso: rodrigotardini@gmail.com";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PoderJudicial.Properties.Resources.poderJudicial;
+            this.pictureBox1.Location = new System.Drawing.Point(268, 220);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 198);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 450);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.consultarButton);
             this.Controls.Add(this.ruta);
@@ -123,6 +135,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Poder Judicial";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,6 +146,7 @@
         private MaterialSkin.Controls.MaterialButton consultarButton;
         public MaterialSkin.Controls.MaterialButton seleccionarButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
