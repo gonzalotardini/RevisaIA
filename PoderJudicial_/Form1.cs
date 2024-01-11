@@ -10,6 +10,8 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OfficeOpenXml.Style;
 using System.Drawing;
+using PoderJudicial.model;
+using System.Collections.Generic;
 
 namespace PoderJudicial_
 {
@@ -22,8 +24,8 @@ namespace PoderJudicial_
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            //materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            //materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            comboBoxOrganismos.UseAccent = false;
 
         }
 
@@ -48,11 +50,14 @@ namespace PoderJudicial_
             try
             {
                 string _ruta = null;
+                string organismo = null;
 
                 // Acceder al control 'ruta' en el hilo principal por error q mostraba
                 Invoke((MethodInvoker)delegate
                 {
                     _ruta = ruta.Text;
+                    organismo = comboBoxOrganismos.SelectedValue.ToString();
+
                 });
 
                 validarRuta(_ruta);
@@ -75,7 +80,7 @@ namespace PoderJudicial_
                             validarParametros(hoja.Name, fila, expediente, actuacion);
                             string apiParam = expediente + " " + actuacion;
 
-                            bool estaFirmado = await getEstaFirmado(apiParam);
+                            bool estaFirmado = await getEstaFirmado(apiParam, organismo);
 
                             ExcelRangeBase celdaFirmado = hoja.Cells[fila, 6];
 
@@ -86,7 +91,8 @@ namespace PoderJudicial_
                                 celdaFirmado.Style.Fill.PatternType = ExcelFillStyle.Solid; ;
                                 celdaFirmado.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Green);
                             }
-                            else {
+                            else
+                            {
                                 celdaFirmado.Value = "NO";
                             }
                         }
@@ -116,14 +122,14 @@ namespace PoderJudicial_
 
         }
 
-        static async Task<bool> getEstaFirmado(String search)
+        static async Task<bool> getEstaFirmado(string search, string organismo)
         {
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
                     // Construye los parámetros en formato JSON
-                    string filtro = $"{{\"filter\":\"{{\\\"identificador\\\":\\\"{search}\\\"}}\",\"page\":0,\"size\":1}}";
+                    string filtro = $"{{\"filter\":\"{{\\\"identificador\\\":\\\"{search}\\\",\\\"tribunal\\\":\\\"{organismo}\\\"}}\",\"page\":0,\"size\":1}}";
 
                     // Codifica la cadena JSON
                     string filtroCodificado = Uri.EscapeDataString(filtro);
@@ -150,6 +156,20 @@ namespace PoderJudicial_
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Font = new Font("Arial", 8, FontStyle.Regular);
+            //lleno combo organismos
+            comboBoxOrganismos.DataSource = getOrganismos();
+            comboBoxOrganismos.DisplayMember = "descripcion";
+            comboBoxOrganismos.ValueMember = "codigo";
+        }
+
+        private List<ItemComboBox> getOrganismos()
+        {
+           return new List<ItemComboBox>
+                {
+                    new ItemComboBox { descripcion = "JUZGADO N°12 - CAYT", codigo = "JUZG12" },
+                    new ItemComboBox { descripcion = "JUZGADO DE FERIA N°1 CAYT", codigo = "JUZ1FC" },
+                };
+
         }
 
         private void validarRuta(string ruta)

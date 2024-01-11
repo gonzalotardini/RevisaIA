@@ -34,6 +34,8 @@
             this.consultarButton = new MaterialSkin.Controls.MaterialButton();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBoxOrganismos = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +88,7 @@
             this.consultarButton.Depth = 0;
             this.consultarButton.HighEmphasis = true;
             this.consultarButton.Icon = null;
-            this.consultarButton.Location = new System.Drawing.Point(268, 154);
+            this.consultarButton.Location = new System.Drawing.Point(268, 223);
             this.consultarButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.consultarButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.consultarButton.Name = "consultarButton";
@@ -103,7 +105,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(302, 433);
+            this.label1.Location = new System.Drawing.Point(375, 518);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(393, 14);
             this.label1.TabIndex = 5;
@@ -112,17 +114,53 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PoderJudicial.Properties.Resources.poderJudicial;
-            this.pictureBox1.Location = new System.Drawing.Point(268, 220);
+            this.pictureBox1.Location = new System.Drawing.Point(268, 294);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(200, 198);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // comboBoxOrganismos
+            // 
+            this.comboBoxOrganismos.AutoResize = false;
+            this.comboBoxOrganismos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboBoxOrganismos.Depth = 0;
+            this.comboBoxOrganismos.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxOrganismos.DropDownHeight = 174;
+            this.comboBoxOrganismos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxOrganismos.DropDownWidth = 121;
+            this.comboBoxOrganismos.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxOrganismos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboBoxOrganismos.FormattingEnabled = true;
+            this.comboBoxOrganismos.IntegralHeight = false;
+            this.comboBoxOrganismos.ItemHeight = 43;
+            this.comboBoxOrganismos.Location = new System.Drawing.Point(207, 137);
+            this.comboBoxOrganismos.MaxDropDownItems = 4;
+            this.comboBoxOrganismos.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboBoxOrganismos.Name = "comboBoxOrganismos";
+            this.comboBoxOrganismos.Size = new System.Drawing.Size(405, 49);
+            this.comboBoxOrganismos.StartIndex = 0;
+            this.comboBoxOrganismos.TabIndex = 7;
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(93, 151);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(93, 19);
+            this.materialLabel1.TabIndex = 8;
+            this.materialLabel1.Text = "ORGANISMO";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 450);
+            this.ClientSize = new System.Drawing.Size(774, 535);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.comboBoxOrganismos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.consultarButton);
@@ -147,6 +185,8 @@
         public MaterialSkin.Controls.MaterialButton seleccionarButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialComboBox comboBoxOrganismos;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
     }
 }
 
