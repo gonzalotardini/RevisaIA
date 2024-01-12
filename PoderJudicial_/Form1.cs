@@ -77,12 +77,16 @@ namespace PoderJudicial_
                             string expediente = hoja.Cells[fila, 3].Text;
                             string actuacion = hoja.Cells[fila, 4].Text;
 
+                            if (expediente.Length == 0 && actuacion.Length == 0) continue;
+
                             validarParametros(hoja.Name, fila, expediente, actuacion);
                             string apiParam = expediente + " " + actuacion;
 
-                            bool estaFirmado = await getEstaFirmado(apiParam, organismo);
-
                             ExcelRangeBase celdaFirmado = hoja.Cells[fila, 6];
+
+                            if (celdaFirmado.Value != null && celdaFirmado.Value.ToString() == "SI") continue;//Si ya esta marcado como firmado no vuelve a consultar esa fila
+                            
+                            bool estaFirmado = await getEstaFirmado(apiParam, organismo);
 
                             //Marca como firmado
                             if (estaFirmado)
