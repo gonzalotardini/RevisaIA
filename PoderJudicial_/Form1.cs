@@ -77,7 +77,7 @@ namespace PoderJudicial_
                             string expediente = hoja.Cells[fila, 3].Text;
                             string actuacion = hoja.Cells[fila, 4].Text;
 
-                            if (expediente.Length == 0 && actuacion.Length == 0) continue;
+                            if (actuacion.Length == 0) continue;
 
                             validarParametros(hoja.Name, fila, expediente, actuacion);
                             string apiParam = expediente + " " + actuacion;
