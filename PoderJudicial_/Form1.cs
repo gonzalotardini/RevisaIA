@@ -12,6 +12,7 @@ using OfficeOpenXml.Style;
 using System.Drawing;
 using PoderJudicial.model;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace PoderJudicial_
 {
@@ -64,10 +65,17 @@ namespace PoderJudicial_
 
                 FileInfo fileInfo = new FileInfo(_ruta);
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                int cantHojasAProcesar = ConfigurationManager.AppSettings["CantHojasAProcesar"] != null ? int.Parse(ConfigurationManager.AppSettings["CantHojasAProcesar"]) : -1;
+                int hojasProcesadas = 0;
+
                 using (var package = new ExcelPackage(fileInfo))
                 {
                     foreach (var hoja in package.Workbook.Worksheets)
                     {
+                        //Si tengo el parametro en CantHojasAProcesar el xml entonces valido q como máximo procese esa cantidad de hojas
+                        if (cantHojasAProcesar > -1 && hojasProcesadas >= cantHojasAProcesar) break;
+
                         //validarEstructuraDocumento(hoja);
                         // Obtiene cantidad de filas
                         int cantidadFilas = hoja.Dimension.Rows;
@@ -91,6 +99,7 @@ namespace PoderJudicial_
                             //Marca como firmado
                             if (estaFirmado)
                             {
+                                quitarColorFondoDeFila(hoja, fila);
                                 celdaFirmado.Value = "SI";
                                 celdaFirmado.Style.Fill.PatternType = ExcelFillStyle.Solid; ;
                                 celdaFirmado.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Green);
@@ -100,6 +109,8 @@ namespace PoderJudicial_
                                 celdaFirmado.Value = "NO";
                             }
                         }
+
+                        hojasProcesadas++;
                     }
 
                     try
@@ -125,6 +136,18 @@ namespace PoderJudicial_
             }
 
         }
+
+        private void quitarColorFondoDeFila(ExcelWorksheet hoja, int numeroFila)
+        {
+            int columnas = hoja.Dimension.End.Column;
+
+            for (int columna = 1; columna <= columnas; columna++)
+            {
+                var celda = hoja.Cells[numeroFila, columna];
+                celda.Style.Fill.PatternType = ExcelFillStyle.None;
+            }
+        }
+
 
         static async Task<bool> getEstaFirmado(string search, string organismo)
         {
