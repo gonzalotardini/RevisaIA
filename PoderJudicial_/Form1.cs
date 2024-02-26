@@ -13,6 +13,7 @@ using System.Drawing;
 using PoderJudicial.model;
 using System.Collections.Generic;
 using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PoderJudicial_
 {
@@ -52,21 +53,24 @@ namespace PoderJudicial_
             {
                 string _ruta = null;
                 string organismo = null;
+                string cantHojasAsString = null;
 
                 // Acceder al control 'ruta' en el hilo principal por error q mostraba
                 Invoke((MethodInvoker)delegate
                 {
                     _ruta = ruta.Text;
                     organismo = comboBoxOrganismos.SelectedValue.ToString();
+                    cantHojasAsString = hojasTextBox.Text;
 
                 });
 
-                validarRuta(_ruta);
+                validarInputs(_ruta, cantHojasAsString);
 
                 FileInfo fileInfo = new FileInfo(_ruta);
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-                int cantHojasAProcesar = ConfigurationManager.AppSettings["CantHojasAProcesar"] != null ? int.Parse(ConfigurationManager.AppSettings["CantHojasAProcesar"]) : -1;
+                int cantHojasAProcesar = string.IsNullOrEmpty(cantHojasAsString) ? -1 : int.Parse(cantHojasAsString);
+                actualizarConfiguracion(cantHojasAProcesar);
                 int hojasProcesadas = 0;
 
                 using (var package = new ExcelPackage(fileInfo))
@@ -137,6 +141,14 @@ namespace PoderJudicial_
 
         }
 
+        private void actualizarConfiguracion(int cantHojasAProcesar)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["CantHojasAProcesar"].Value = cantHojasAProcesar.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
         private void quitarColorFondoDeFila(ExcelWorksheet hoja, int numeroFila)
         {
             int columnas = hoja.Dimension.End.Column;
@@ -187,6 +199,7 @@ namespace PoderJudicial_
             comboBoxOrganismos.DataSource = getOrganismos();
             comboBoxOrganismos.DisplayMember = "descripcion";
             comboBoxOrganismos.ValueMember = "codigo";
+            hojasTextBox.Text = (ConfigurationManager.AppSettings["CantHojasAProcesar"] != null ? int.Parse(ConfigurationManager.AppSettings["CantHojasAProcesar"]) : -1).ToString();
         }
 
         private List<ItemComboBox> getOrganismos()
@@ -199,9 +212,11 @@ namespace PoderJudicial_
 
         }
 
-        private void validarRuta(string ruta)
+        private void validarInputs(string ruta, string cantHojasAProcesar)
         {
             if (string.IsNullOrEmpty(ruta)) throw new ValidationException("Debes seleccionar un archivo.");
+            if (!int.TryParse(cantHojasAProcesar, out _)) throw new ValidationException("Ingresá un número de hojas a procesar que sea válido.");
+            if (int.Parse(cantHojasAProcesar) <= 0) throw new ValidationException("Ingresá una cantidad de hojas a procesar mayor  a 0.");
         }
 
         private void validarParametros(string hoja, int fila, string expediente, string actuacion)
@@ -225,5 +240,6 @@ namespace PoderJudicial_
                 frm.ShowDialog(this);
             }
         }
+
     }
 }

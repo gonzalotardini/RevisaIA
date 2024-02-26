@@ -36,6 +36,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBoxOrganismos = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.hojasTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +90,7 @@
             this.consultarButton.Depth = 0;
             this.consultarButton.HighEmphasis = true;
             this.consultarButton.Icon = null;
-            this.consultarButton.Location = new System.Drawing.Point(268, 223);
+            this.consultarButton.Location = new System.Drawing.Point(285, 258);
             this.consultarButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.consultarButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.consultarButton.Name = "consultarButton";
@@ -114,7 +116,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PoderJudicial.Properties.Resources.poderJudicial;
-            this.pictureBox1.Location = new System.Drawing.Point(268, 294);
+            this.pictureBox1.Location = new System.Drawing.Point(285, 317);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(200, 198);
             this.pictureBox1.TabIndex = 6;
@@ -129,7 +131,7 @@
             this.comboBoxOrganismos.DropDownHeight = 174;
             this.comboBoxOrganismos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxOrganismos.DropDownWidth = 121;
-            this.comboBoxOrganismos.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxOrganismos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.comboBoxOrganismos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.comboBoxOrganismos.FormattingEnabled = true;
             this.comboBoxOrganismos.IntegralHeight = false;
@@ -154,11 +156,42 @@
             this.materialLabel1.TabIndex = 8;
             this.materialLabel1.Text = "ORGANISMO";
             // 
+            // hojasTextBox
+            // 
+            this.hojasTextBox.AnimateReadOnly = false;
+            this.hojasTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.hojasTextBox.Depth = 0;
+            this.hojasTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.hojasTextBox.LeadingIcon = null;
+            this.hojasTextBox.Location = new System.Drawing.Point(207, 203);
+            this.hojasTextBox.MaxLength = 50;
+            this.hojasTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.hojasTextBox.Multiline = false;
+            this.hojasTextBox.Name = "hojasTextBox";
+            this.hojasTextBox.Size = new System.Drawing.Size(405, 50);
+            this.hojasTextBox.TabIndex = 9;
+            this.hojasTextBox.Text = "";
+            this.hojasTextBox.TrailingIcon = null;
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(51, 215);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(150, 19);
+            this.materialLabel2.TabIndex = 10;
+            this.materialLabel2.Text = "HOJAS A PROCESAR";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 535);
+            this.Controls.Add(this.materialLabel2);
+            this.Controls.Add(this.hojasTextBox);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.comboBoxOrganismos);
             this.Controls.Add(this.pictureBox1);
@@ -187,6 +220,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialComboBox comboBoxOrganismos;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialTextBox hojasTextBox;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
 
