@@ -100,6 +100,7 @@ namespace PoderJudicial_
                             
                             bool estaFirmado = await getEstaFirmado(apiParam, organismo);
 
+
                             //Marca como firmado
                             if (estaFirmado)
                             {
@@ -156,6 +157,7 @@ namespace PoderJudicial_
             for (int columna = 1; columna <= columnas; columna++)
             {
                 var celda = hoja.Cells[numeroFila, columna];
+                if (celda.Style.Fill.BackgroundColor.Rgb == ("FFFFFF00")) continue; //Si la celda esta pintada de color amarillo no le saco el estilo, por pedido de Rodrigo
                 celda.Style.Fill.PatternType = ExcelFillStyle.None;
             }
         }
