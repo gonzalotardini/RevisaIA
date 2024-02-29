@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PoderJudicial.model
+namespace RevisaIA.model
 {
     public class ItemComboBox
     {

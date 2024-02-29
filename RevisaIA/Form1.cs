@@ -10,12 +10,12 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OfficeOpenXml.Style;
 using System.Drawing;
-using PoderJudicial.model;
+using RevisaIA.model;
 using System.Collections.Generic;
 using System.Configuration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace PoderJudicial_
+namespace RevisaIA
 {
     public partial class Form1 : MaterialForm
     {

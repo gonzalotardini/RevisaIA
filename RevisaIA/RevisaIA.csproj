@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{04BA4D6D-D49B-432E-8A67-DD5CF9262570}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PoderJudicial</RootNamespace>
-    <AssemblyName>PoderJudicial</AssemblyName>
+    <RootNamespace>RevisaIA</RootNamespace>
+    <AssemblyName>RevisaIA</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>poderJudicial.ico</ApplicationIcon>
+    <ApplicationIcon>revisaIA.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EPPlus, Version=7.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
@@ -122,10 +122,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\poderJudicial.ico" />
+    <None Include="Resources\revisaIA.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="poderJudicial.ico" />
+    <Content Include="revisaIA.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace PoderJudicial_
+﻿namespace RevisaIA
 {
     partial class LoadingForm
     {

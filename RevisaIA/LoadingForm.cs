@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PoderJudicial_
+namespace RevisaIA
 {
     public partial class LoadingForm : Form
     {

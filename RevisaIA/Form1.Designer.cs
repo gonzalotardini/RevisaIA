@@ -1,4 +1,4 @@
-﻿namespace PoderJudicial_
+﻿namespace RevisaIA
 {
     partial class Form1
     {
@@ -115,7 +115,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::PoderJudicial.Properties.Resources.poderJudicial;
+            this.pictureBox1.Image = global::RevisaIA.Properties.Resources.revisaIA;
             this.pictureBox1.Location = new System.Drawing.Point(285, 317);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(200, 198);
