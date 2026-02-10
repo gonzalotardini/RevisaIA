@@ -210,7 +210,8 @@ namespace RevisaIA
                 {
                     new ItemComboBox { descripcion = "JUZGADO N°12 - CAYT", codigo = "JUZG12" },
                     new ItemComboBox { descripcion = "JUZGADO DE FERIA N°1 CAYT", codigo = "JUZ1FC" },
-                };
+                    new ItemComboBox { descripcion = "JUZGADO N°21 - CAYT", codigo = "JUZG21" },
+           };
 
         }
 
